@@ -1,10 +1,10 @@
 
-const parseData = (data) => {
-    const volumeInfo = data.volumeInfo; 
+const parseData = (data) => { 
     const totalBooks = data.totalItems;
     const items = data.items.map((book) => {
+        const volumeInfo = book.volumeInfo;
         const id = book.id
-        const imgUrl = volumeInfo.imageLinks == null ? null : volumeInfo.imageLinks.smallThumbnail;
+        const imgUrl = Object.hasOwn(volumeInfo, 'imageLinks') ? volumeInfo.imageLinks.smallThumbnail : null;
         const name = volumeInfo.title ?? null;
         const categories = volumeInfo.categories ?? null;
         const authors = volumeInfo.authors ?? null;

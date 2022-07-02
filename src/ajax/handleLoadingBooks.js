@@ -1,11 +1,12 @@
 import {parseData} from './parseData.js'
 import { ajax } from './ajax.js';
-import { actionsBooks  } from '../slices/booksSlice.js';
+import { actionsDataResultOfSearching  } from '../slices/dataResultOfSearchingSlice.js';
+import { actionsOfsearchingData } from '../slices/dataOfSearchingSlice.js';
 import { batch } from 'react-redux';
 
 const handleLoadingBooks = async (type, startIndex, dispatch,  bookName, selectByCategory, selectBySort) => {
     console.log(startIndex)
-    const currentStartIndex = type === 'firstLoad' ? startIndex : startIndex + 30;
+    const currentStartIndex = type === 'firstLoad' ? 0 : startIndex + 30;
     console.log(currentStartIndex)
     const response = await ajax(bookName, selectByCategory, selectBySort, currentStartIndex)
 
@@ -14,16 +15,16 @@ const handleLoadingBooks = async (type, startIndex, dispatch,  bookName, selectB
     const mappingType = {
         'firstLoad': () => {
             batch(() => {
-                dispatch(actionsBooks.removeAllBooks())
-                dispatch(actionsBooks.addNewBooks(items))
-                dispatch(actionsBooks.updateStartIndex({currentStartIndex}))
-                dispatch(actionsBooks.updateMeta({meta: {bookName, totalBooks, selectByCategory, selectBySort}}))
+                dispatch(actionsDataResultOfSearching.removeAllBooks())
+                dispatch(actionsDataResultOfSearching.addNewBooks(items))
+                dispatch(actionsOfsearchingData.updateStartIndex({currentStartIndex}))
+                dispatch(actionsOfsearchingData.updateMeta({meta: {bookName, totalBooks, selectByCategory, selectBySort}}))
             })
         },
         'someLoad': () => {
             batch(() => {
-                dispatch(actionsBooks.addNewBooks(items))
-                dispatch(actionsBooks.updateStartIndex({currentStartIndex}))
+                dispatch(actionsDataResultOfSearching.addNewBooks(items))
+                dispatch(actionsOfsearchingData.updateStartIndex({currentStartIndex}))
             })
         }
     }

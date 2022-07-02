@@ -1,11 +1,17 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import { actionsOfCurrentBook } from "../slices/dataCurrentBookSlice";
+import { useDispatch } from "react-redux";
 
 const BookCard = ({ book }) => {
+    const dispatch = useDispatch()
+    const handlerNewCurrentBook = (currentBookId) => () => {
+        dispatch(actionsOfCurrentBook.setCurrentBook({currentBookId}))
+    }
     return (
-        <Card className="p-0 col-5 col-md-3 col-xs-12 m-3">
-            <Card.Img variant="top" src={book.imgUrl} />
-            <Card.Body>
+        <Card className="p-0 col-5 col-md-3 col-xs-12 m-3 border-success bg-light bookCard" onClick={handlerNewCurrentBook(book.id)}>
+            <Card.Img variant="top" src={book.imgUrl} className="mx-auto mt-3 w-50 shadow-lg"/>
+            <Card.Body className="my-auto">
                 <Card.Title>{book.name}</Card.Title>
                 <Card.Text className="fw-light text-decoration-underline">
                     {book.categories}

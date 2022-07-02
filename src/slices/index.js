@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import booksReducer from './booksSlice';
-
+import dataResultOfSearchingReducer from './dataResultOfSearchingSlice';
+import dataOfSearchingReducer from './dataOfSearchingSlice';
+import dataCurrentBookReducer from './dataCurrentBookSlice';
 export default configureStore({
     reducer: {
-        uiBooks: booksReducer
+        dataOfSearching: dataOfSearchingReducer,
+        dataCurrentBook: dataCurrentBookReducer,
+        dataResultOfSearching: dataResultOfSearchingReducer
     },
 })

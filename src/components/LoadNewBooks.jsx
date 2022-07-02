@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 
 import { handleLoadingBooks } from "../ajax/handleLoadingBooks";
 
-const LoadNewBooks = ({meta: {bookName, selectByCategory, selectBySort}, someProps: {startIndex, dispatch }}) => {
+const LoadNewBooks = ({meta: {bookName, selectByCategory, selectBySort}, startIndex, dispatch }) => {
     return (
         <div>
             <Button variant="success" 

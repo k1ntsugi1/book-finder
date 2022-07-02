@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.headerBg {
+  background: rgb(104,255,253);
+  background: linear-gradient(45deg, rgba(104,255,253,1) 14%, rgba(242,100,246,1) 99%);
+}
+
+.bookCard:hover {
+  position: relative;
+  left: -1em;
+  top: -1em;
+  box-shadow: 5px 3px 1px 1px #59daae;
+}
