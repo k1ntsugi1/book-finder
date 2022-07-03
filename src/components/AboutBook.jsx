@@ -14,19 +14,19 @@ const AboutBook = ({ currentBookId }) => {
     }
     return (
         <div className="h-100">
-            <div className="d-flex flex-row justify-content-around">
-                <h2>{currentBook.name}</h2>
-                <Button variant="success" onClick={handleRemoveCurrentBook}></Button>
+            <div className="d-flex flex-row justify-content-start">
+                <Button variant="" className="text-decoration-underline btn-back" onClick={handleRemoveCurrentBook}> ← Вернутсья к книгам</Button>
             </div>
             <hr />
             <div className="container">
-                <div className="d-flex flex-row flex-wrap">
-                    <div className="d-flex flex-grow-1 justify-content-center align-self-center">
-                        <img src={currentBook.imgUrl} alt="ImgBook" className="w-50"/>
+                <div className="row">
+                    <div className="col-sm-6 py-3 bg-light">
+                        <img src={currentBook.imgUrl} alt="ImgBook" className="mx-auto w-50 d-block"/>
                     </div>
-                    <div>
-                        <p className="text-decoration-underline">{currentBook.categories}</p>
-                        <p>{currentBook.authors}</p>
+                    <div className="d-flex flex-column col-sm-6">
+                        <span className="fw-bold fs-3">{currentBook.name}</span>
+                        <span className="text-decoration-underline">{currentBook.categories}</span>
+                        <span className="fw-bold flex-grow-1">{currentBook.authors}</span>
                         <div className="border">{currentBook.description}</div>
                     </div>
                 </div>

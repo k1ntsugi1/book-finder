@@ -14,12 +14,32 @@ code {
 
 .headerBg {
   background: rgb(104,255,253);
-  background: linear-gradient(45deg, rgba(104,255,253,1) 14%, rgba(242,100,246,1) 99%);
+  background: linear-gradient(45deg, #68fffd 14%, #f264f6 99%);
 }
 
 .bookCard:hover {
   position: relative;
   left: -1em;
   top: -1em;
-  box-shadow: 5px 3px 1px 1px #59daae;
+  box-shadow: 5px 3px 5px 5px #68fffd;
+  cursor: pointer;
+}
+
+.btn-back:hover,
+.btn-back:focus {
+  border: 1px solid #f264f6
+}
+
+.btn-load {
+  border-color: #68fffd !important;
+  background: linear-gradient(45deg, #68fffd 14%, #f264f6 99%);
+  color: white !important;
+}
+
+.btn-load:hover,
+.btn-load:focus,
+.btn-load:visited{
+  border-color: #68fffd !important;
+  background: linear-gradient(45deg, #06d5d9 14%, #ea00ff 99%);
+  color: white !important;
 }

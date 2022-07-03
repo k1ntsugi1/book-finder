@@ -6,7 +6,7 @@ const SelectFields = ({formik: {selectByCategory, selectBySort, handleChange}}) 
             <div className='d-flex flex-row px-auto justify-content-evenly'>
                 <Form.Group>
                   <Form.Label>selectByCategory</Form.Label>
-                  <Form.Select id="selectByCategory" name="selectByCategory" size="sm" value={selectByCategory} onChange={handleChange}>
+                  <Form.Select id="selectByCategory" name="selectByCategory" size="sm" value={selectByCategory} onChange={handleChange} className="border-info">
                     <option value="all">all</option>
                     <option value="art">art</option>
                     <option value="biography">biography</option>
@@ -18,7 +18,7 @@ const SelectFields = ({formik: {selectByCategory, selectBySort, handleChange}}) 
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>selectBySort</Form.Label>
-                  <Form.Select id="selectBySort" name="selectBySort" size="sm" value={selectBySort} onChange={handleChange}>
+                  <Form.Select id="selectBySort" name="selectBySort" size="sm" value={selectBySort} onChange={handleChange} className="border-info">
                     <option value="relevance">relevance </option>
                     <option value="newest">newest</option>
                   </Form.Select>

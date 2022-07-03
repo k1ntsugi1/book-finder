@@ -28,7 +28,7 @@ function App() {
   return (
     <div className='d-flex flex-column min-vh-100'>
       <div className='flex-grow-1'>
-        <div className='py-3 px-0 container-fluid text-white'>
+        <div className='p-0 container-fluid text-white'>
           <header className='py-2 d-flex flex-column align-items-center headerBg'>
             <FormHeader formik={formik}/>
           </header>
