@@ -1,14 +1,19 @@
 import React from "react";
 import LoadNewBooks from './LoadNewBooks.jsx';
 import BookCard from './BookCard.jsx';
+import { useSelector } from "react-redux";
+import { selectorsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice.js";
 
-const BooksList = ({ meta, books, startIndex, dispatch }) => {
+const BooksList = () => {
+    const books = useSelector(selectorsDataResultOfSearching.selectAll);
+    const totalBooks = useSelector((state) => state.dataOfSearching.totalBooks);
+    
     return (
         <>
-            {meta.totalBooks && <h2 className='fw-bold'>Найдено: {meta.totalBooks} книг</h2>}
+            {totalBooks && <h2 className='fw-bold'>Найдено: {totalBooks} книг</h2>}
 
             <div className='row justify-content-around'>
-                {meta.totalBooks
+                {totalBooks
                     && books.map((book) => {
                         return (
                             <BookCard book={book} key={book.id} />
@@ -17,7 +22,7 @@ const BooksList = ({ meta, books, startIndex, dispatch }) => {
                 }
             </div>
 
-            {meta.totalBooks && <LoadNewBooks meta={meta} startIndex={ startIndex } dispatch={dispatch} />}
+            {totalBooks && <LoadNewBooks/>}
         </>
     )
 }

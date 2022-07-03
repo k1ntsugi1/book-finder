@@ -1,9 +1,10 @@
 import React, {useRef, useEffect} from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const SearchField = ({formik: {bookName, handleChange}}) => {
     const searchField = useRef();
-
+    const ajaxState = useSelector((state) => state.dataResultOfSearching.ajaxState);
     useEffect(() => {
         searchField.current.focus()
       },[])
@@ -19,7 +20,7 @@ const SearchField = ({formik: {bookName, handleChange}}) => {
                                 ref={searchField}
                                 aria-label="searchField"
                                 className="rounded-left border-info"/>
-                  <Button variant="" type="submit" className="btn-load rounded-right">
+                  <Button variant="" type="submit" disabled={ajaxState.loading === 'pending'} className="btn-load rounded-right">
                     <i className="fa-solid fa-magnifying-glass"></i>
                   </Button>
                 </InputGroup>

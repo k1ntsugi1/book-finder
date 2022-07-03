@@ -10,7 +10,6 @@ const parseData = (data) => {
         const authors = volumeInfo.authors ?? null;
         const description = volumeInfo.description ?? null
 
-        console.log(id, imgUrl, name, categories, authors)
         return {id, imgUrl, name, categories, authors, description }
     })
     return {totalBooks, items}

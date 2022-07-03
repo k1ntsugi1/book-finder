@@ -5,9 +5,9 @@ const Spinner = () => {
     return (
         <div className="align-self-center">
             <ThreeDots
-                height="200"
-                width="200"
-                color='#e8e8f8'
+                height="100"
+                width="100"
+                color='#f264f6'
                 ariaLabel='loading'
             />
         </div>

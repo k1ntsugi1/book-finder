@@ -1,30 +1,30 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { batch, useDispatch, useSelector } from "react-redux";
 import { fetchDataOfBooks } from "../../slices/dataResultOfSearchingSlice";
-import { Spinner } from "../Spinner.jsx";
+import { Spinner } from "./Spinner.jsx";
+import { actionsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
 
-const LoadNewBooks = ({ meta: { bookName, selectByCategory, selectBySort }, startIndex, dispatch }) => {
+
+const LoadNewBooks = () => {
     const ajaxState = useSelector((state) => state.dataResultOfSearching.ajaxState);
+    const dispatch = useDispatch();
     return (
         <div className="d-flex flex-column">
+            {ajaxState.loading === 'pending' && ajaxState.type === 'someLoad' && <Spinner/>}
             <Button variant=""
-                className="btn-load "
+                disabled={ajaxState.loading === 'pending'}
+                className="btn-load"
+                style={{width: '200px'}}
                 onClick={() => {
-                    dispatch(fetchDataOfBooks(
-                        {
-                            type: 'someLoad',
-                            startIndex,
-                            bookName,
-                            selectByCategory,
-                            selectBySort
-                        }
-                    ))
+                    batch(()=> {
+                        dispatch(actionsDataResultOfSearching.setType({type: 'someLoad'}))
+                        dispatch(fetchDataOfBooks())
+                    })
                 }}>
                 <span className="fs-4 fw-bold">Load </span>
                 <i className="fa-solid fa-spinner fa-2xl"></i>
             </Button>
-            {ajaxState.loading === 'pending' && ajaxState.type === 'someLoad' && <Spinner/>}
         </div>
     )
 }

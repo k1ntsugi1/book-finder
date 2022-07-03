@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import { actionsDataResultOfSearching } from './dataResultOfSearchingSlice';
 
 const dataCurrentBookSlice = createSlice({
     name: 'dataCurrentBookSlice',
@@ -8,6 +8,12 @@ const dataCurrentBookSlice = createSlice({
         setCurrentBook: (state, {payload: { currentBookId }}) => {state.currentBookId = currentBookId},
         removeCurrentBook: (state) => {state.currentBookId = null}
     },
+    extraReducers: (builder) => {
+        builder
+        .addCase(actionsDataResultOfSearching.removeListOfBooks, (state) => {
+            state.currentBookId = null;
+        })
+    }
 })
 
 export const  actionsOfCurrentBook = dataCurrentBookSlice.actions;

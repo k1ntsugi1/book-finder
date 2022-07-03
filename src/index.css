@@ -20,7 +20,7 @@ code {
   position: relative;
   left: -1em;
   top: -1em;
-  box-shadow: 5px 3px 5px 5px #68fffd;
+  box-shadow: 12px 18px 8px 0px #68fffd;
   cursor: pointer;
 }
 
@@ -31,7 +31,7 @@ code {
 
 .btn-load {
   border: 0 !important;
-  background: linear-gradient(45deg, #68fffd 14%, #f264f6 99%);
+  background: linear-gradient(45deg, #f264f6  14%, #68fffd  99%);
   color: white !important;
 }
 
@@ -39,6 +39,11 @@ code {
 .btn-load:focus,
 .btn-load:visited{
   border: 0 !important;
-  background: linear-gradient(45deg, #06d5d9 14%, #ea00ff 99%);
+  background: linear-gradient(45deg, #ea00ff 14%, #06d5d9 99%);
   color: white !important;
+}
+
+.form-control:focus,
+.form-control:active {
+  box-shadow: 0px 0px 17px 13px #ea00ff inset;
 }

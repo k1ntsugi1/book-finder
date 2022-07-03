@@ -3,29 +3,36 @@ import { Form } from "react-bootstrap";
 import SearchField from "./SearchField";
 import SelectFields from "./SelectFields";
 import { fetchDataOfBooks } from '../../slices/dataResultOfSearchingSlice.js';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, batch } from 'react-redux';
 import { useFormik } from 'formik';
+import { actionsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
+import { actionsOfSearchingData } from "../../slices/dataOfSearchingSlice";
 
 const FormHeader = () => {
     const meta = useSelector((state) => state.dataOfSearching.meta);
-    const startIndex = useSelector((state) => state.dataOfSearching.startIndex);
     const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: { bookName: meta.bookName, selectByCategory: meta.selectByCategory, selectBySort: meta.selectBySort },
         validateOnChange: false,
         validateOnBlur: false,
-        onSubmit: (values) => {
-            dispatch(fetchDataOfBooks(
-                {
-                    type: 'firstLoad',
-                    startIndex,
-                    bookName: values.bookName,
-                    selectByCategory: values.selectByCategory,
-                    selectBySort: values.selectBySort
-                }
-            )
-            )
+        onSubmit: (values, actions) => {
+            batch(() => {
+                dispatch(actionsDataResultOfSearching.setType({ type: 'firstLoad' }));
+                dispatch(actionsOfSearchingData.setMetaOfSearching(
+                    {
+                        data:
+                        {
+                            bookName: values.bookName,
+                            selectByCategory: values.selectByCategory,
+                            selectBySort: values.selectBySort
+                        }
+                    }
+                )
+                )
+                dispatch(actionsDataResultOfSearching.removeListOfBooks());
+                dispatch(fetchDataOfBooks());
+            });
         }
     })
     return (

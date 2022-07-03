@@ -4,16 +4,17 @@ import { actionsOfCurrentBook } from '../../slices/dataCurrentBookSlice.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from "react-bootstrap";
 
-const AboutBook = ({ currentBookId }) => {
-    console.log(currentBookId)
+const AboutBook = () => {
+    const currentBookId = useSelector((state) => state.dataCurrentBook.currentBookId);
     const currentBook = useSelector((store) => selectorsDataResultOfSearching.selectById(store, currentBookId));
-    console.log(currentBook)
     const dispatch = useDispatch();
+
     const handleRemoveCurrentBook = () => {
         dispatch(actionsOfCurrentBook.removeCurrentBook())
-    }
+    };
+
     return (
-        <div className="h-100">
+        <div className="w-75">
             <div className="d-flex flex-row justify-content-start">
                 <Button variant="" className="text-decoration-underline btn-back" onClick={handleRemoveCurrentBook}> ← Вернутсья к книгам</Button>
             </div>
@@ -21,13 +22,13 @@ const AboutBook = ({ currentBookId }) => {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-6 py-3 bg-light">
-                        <img src={currentBook.imgUrl} alt="ImgBook" className="mx-auto w-50 d-block"/>
+                        {currentBook.imgUrl && <img src={currentBook.imgUrl} alt="ImgBook" className="mx-auto w-50 d-block"/>}
                     </div>
                     <div className="d-flex flex-column col-sm-6">
-                        <span className="fw-bold fs-3">{currentBook.name}</span>
-                        <span className="text-decoration-underline">{currentBook.categories}</span>
-                        <span className="fw-bold flex-grow-1">{currentBook.authors}</span>
-                        <div className="border">{currentBook.description}</div>
+                        <span className="mb-3 fw-bold fs-3">{currentBook.name}</span>
+                        {currentBook.categories && <span className="mb-3 ">Categories: <span className="text-decoration-underline">{currentBook.categories}</span></span>}
+                        {currentBook.authors && <span className="mb-3 ">Authors: <span className="fw-bold">{currentBook.authors}</span></span>}
+                        <div className="p-3 w-100 border overflow-auto" style={{height: '300px'}}>{currentBook.description ?? 'no description'}</div>
                     </div>
                 </div>
             </div>

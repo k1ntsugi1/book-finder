@@ -1,37 +1,44 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchDataOfBooks } from './dataResultOfSearchingSlice';
+import { actionsDataResultOfSearching } from './dataResultOfSearchingSlice';
 
 const dataOfSearchingSLice = createSlice({
     name: 'dataOfSearchingSLice',
-    initialState: { startIndex: 0,
-                    meta: {
-                        bookName: '',
-                        totalBooks: null,
-                        selectByCategory: 'all',
-                        selectBySort: 'relevance'
-                    },
-                  },
+    initialState: {
+        totalBooks: null,
+        startIndex: 0,
+        meta: {
+            bookName: '',
+            selectByCategory: 'all',
+            selectBySort: 'relevance'
+        }
+    },
     reducers: {
-
+        setMetaOfSearching: (state, { payload: { data } }) => {
+            state.meta = data
+        }
     },
     extraReducers: (builder) => {
         builder
-        .addCase(fetchDataOfBooks.fulfilled, (state, { payload: {currentStartIndex, type, meta}}) => {
-            const mappingType = {
-                'firstLoad': () => {
-                    state.meta = meta;
-                    state.startIndex = currentStartIndex;
-                },
-                'someLoad': () => {
-                    state.startIndex = currentStartIndex;
-                }
-            };
-            mappingType[type]();
+            .addCase(fetchDataOfBooks.fulfilled, (state, { payload: { type, totalBooks , currentStartIndex } }) => {
+                const mappingType = {
+                    'firstLoad': () => {
+                        state.totalBooks = totalBooks;
+                        state.startIndex = currentStartIndex;
+                    },
+                    'someLoad': () => {
+                        state.startIndex = currentStartIndex;
+                    }
+                };
+                mappingType[type]();
 
-        }) 
+            })
+            .addCase(actionsDataResultOfSearching.removeListOfBooks, (state) => {
+                state.totalBooks = null;
+            })
     }
 })
 
-export const  actionsOfsearchingData = dataOfSearchingSLice.actions;
+export const actionsOfSearchingData = dataOfSearchingSLice.actions;
 
 export default dataOfSearchingSLice.reducer;
