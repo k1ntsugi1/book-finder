@@ -19,10 +19,10 @@ const AboutBook = () => {
                 <Button variant="" className="text-decoration-underline btn-back" onClick={handleRemoveCurrentBook}> ← Вернутсья к книгам</Button>
             </div>
             <hr />
-            <div className="container">
+            <div className="container shadow-lg">
                 <div className="row">
-                    <div className="col-sm-6 py-3 bg-light">
-                        {currentBook.imgUrl && <img src={currentBook.imgUrl} alt="ImgBook" className="mx-auto w-50 d-block"/>}
+                    <div className="d-flex col-sm-6 py-3 bg-light">
+                        {currentBook.imgUrl && <img src={currentBook.imgUrl} alt="ImgBook" className="m-auto d-block" style={{width: '280px'}}/>}
                     </div>
                     <div className="d-flex flex-column col-sm-6">
                         <span className="mb-3 fw-bold fs-3">{currentBook.name}</span>
