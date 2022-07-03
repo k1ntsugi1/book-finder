@@ -13,7 +13,6 @@ code {
 }
 
 .headerBg {
-  background: rgb(104,255,253);
   background: linear-gradient(45deg, #68fffd 14%, #f264f6 99%);
 }
 
@@ -31,7 +30,7 @@ code {
 }
 
 .btn-load {
-  border-color: #68fffd !important;
+  border: 0 !important;
   background: linear-gradient(45deg, #68fffd 14%, #f264f6 99%);
   color: white !important;
 }
@@ -39,7 +38,7 @@ code {
 .btn-load:hover,
 .btn-load:focus,
 .btn-load:visited{
-  border-color: #68fffd !important;
+  border: 0 !important;
   background: linear-gradient(45deg, #06d5d9 14%, #ea00ff 99%);
   color: white !important;
 }

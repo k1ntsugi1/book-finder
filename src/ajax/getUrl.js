@@ -1,4 +1,5 @@
 export default (bookName, selectByCategory, selectBySort, currentStartIndex) => {
+    console.log(bookName, selectByCategory, selectBySort, currentStartIndex, 'url');
     const mainUrl = 'https://www.googleapis.com/books/v1/volumes?';
     const q = `q=${bookName}`;
     const categories = selectByCategory === 'all' ? '' : `&categories=[${selectByCategory}]`;

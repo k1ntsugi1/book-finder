@@ -20,7 +20,7 @@ const SearchField = ({formik: {bookName, handleChange}}) => {
                                 aria-label="searchField"
                                 className="rounded-left border-info"/>
                   <Button variant="" type="submit" className="btn-load rounded-right">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i className="fa-solid fa-magnifying-glass"></i>
                   </Button>
                 </InputGroup>
               </Form.Group>

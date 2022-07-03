@@ -1,7 +1,7 @@
 import React from "react";
-import AboutBook from "./AboutBook";
-import BooksList from "./BooksList";
-import { Spinner } from "../Spinner";
+import AboutBook from "./AboutBook.jsx";
+import BooksList from "./BooksList.jsx";
+import { Spinner } from "../Spinner.jsx";
 import { selectorsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,7 +14,7 @@ const Main = () => {
     const dispatch = useDispatch();
     return (
         <main className="h-100 py-3 d-flex flex-column align-items-center text-dark">
-            {(ajaxState.loading === 'pending' && ajaxState.type === 'firstLoad') && <Spinner/>}
+            {ajaxState.loading === 'pending' &&  ajaxState.type === 'firstLoad' && <Spinner/>}
             {currentBookId
                 ? <AboutBook currentBookId={currentBookId} />
                 : <BooksList meta={meta} books={books} startIndex={startIndex} dispatch={dispatch} />}

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import { fetchDataOfBooks } from './dataResultOfSearchingSlice';
 
 const dataOfSearchingSLice = createSlice({
     name: 'dataOfSearchingSLice',
@@ -12,14 +12,24 @@ const dataOfSearchingSLice = createSlice({
                     },
                   },
     reducers: {
-        updateStartIndex: (state, {payload: {currentStartIndex}}) => {state.startIndex = currentStartIndex},
-        updateMeta: (state, {payload: {meta}}) => {
-            state.meta.bookName = meta.bookName;
-            state.meta.totalBooks = meta.totalBooks;
-            state.meta.selectByCategory = meta.selectByCategory;
-            state.meta.selectBySort = meta.selectBySort;
-        },
+
     },
+    extraReducers: (builder) => {
+        builder
+        .addCase(fetchDataOfBooks.fulfilled, (state, { payload: {currentStartIndex, type, meta}}) => {
+            const mappingType = {
+                'firstLoad': () => {
+                    state.meta = meta;
+                    state.startIndex = currentStartIndex;
+                },
+                'someLoad': () => {
+                    state.startIndex = currentStartIndex;
+                }
+            };
+            mappingType[type]();
+
+        }) 
+    }
 })
 
 export const  actionsOfsearchingData = dataOfSearchingSLice.actions;
