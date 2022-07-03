@@ -1,6 +1,6 @@
 import React from "react";
-import { selectorsDataResultOfSearching } from '../slices/dataResultOfSearchingSlice.js';
-import { actionsOfCurrentBook } from '../slices/dataCurrentBookSlice.js';
+import { selectorsDataResultOfSearching } from '../../slices/dataResultOfSearchingSlice.js';
+import { actionsOfCurrentBook } from '../../slices/dataCurrentBookSlice.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from "react-bootstrap";
 

@@ -4,7 +4,6 @@ const ajax = async (bookName, selectByCategory, selectBySort, currentStartIndex)
     console.log(bookName, selectByCategory, selectBySort, currentStartIndex)
     const url = getUrl(bookName, selectByCategory, selectBySort, currentStartIndex)
     const response = await axios.get(url);
-    console.log(response.data);
     return response.data;
 }
 

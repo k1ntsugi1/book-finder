@@ -1,6 +1,6 @@
 import React from "react";
-import LoadNewBooks from '../LoadNewBooks.jsx';
-import BookCard from '../BookCard.jsx';
+import LoadNewBooks from './LoadNewBooks.jsx';
+import BookCard from './BookCard.jsx';
 
 const BooksList = ({ meta, books, startIndex, dispatch }) => {
     return (

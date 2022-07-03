@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { actionsOfCurrentBook } from "../slices/dataCurrentBookSlice";
+import { actionsOfCurrentBook } from "../../slices/dataCurrentBookSlice";
 import { useDispatch } from "react-redux";
 
 const BookCard = ({ book }) => {
