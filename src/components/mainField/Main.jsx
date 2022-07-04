@@ -1,8 +1,9 @@
 import React  from "react";
+import { useSelector } from "react-redux";
+
 import AboutBook from "./AboutBook.jsx";
 import BooksList from "./BooksList.jsx";
-import { Spinner } from "./Spinner.jsx";
-import { useSelector } from "react-redux";
+import Spinner from "./Spinner.jsx";
 import ErrorFetch from "./ErrorFetch.jsx";
 
 

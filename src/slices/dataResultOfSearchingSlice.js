@@ -4,22 +4,22 @@ import {
     createAsyncThunk,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
-import getUrl from '../ajax/getUrl.js';
+
+import { getUrl } from '../ajax/getUrl.js';
 import { parseData } from '../ajax/parseData.js';
 
 export const fetchDataOfBooks = createAsyncThunk(
     'books/fetchDataOfBooks',
     async (_, thunkAPI) => {
         const state = thunkAPI.getState();
-        const type = state.dataResultOfSearching.ajaxState.type;
-        const {oldStartIndex, totalBooks, meta: {bookName, selectByCategory, selectBySort} } = state.dataOfSearching;
-        
-        //const freeeSpace = totalBooks - oldStartIndex;
-        //const step = freeeSpace >= 30 ? 30 : freeeSpace;
-        const currentStartIndex = type === 'firstLoad' ? oldStartIndex : oldStartIndex + 30;
+        const { type } = state.dataResultOfSearching.ajaxState;
+        const { oldStartIndex, meta: {bookName, selectByCategory, selectBySort} } = state.dataOfSearching;
+
+        const currentStartIndex = type === 'firstLoad' ? 0 : oldStartIndex + 30;
 
         const url = getUrl(bookName, selectByCategory, selectBySort, currentStartIndex)
         const response = await axios.get(url);
+
         const { currentTotalBooks, items } = parseData(response.data);
         return { items, type, currentTotalBooks , currentStartIndex }
     }
@@ -37,20 +37,19 @@ const dataResultOfSearchingSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchDataOfBooks.pending, (state) => {
-                state.ajaxState.loading = 'pending';
-                state.ajaxState.error = null;
-            })
-            .addCase(fetchDataOfBooks.fulfilled, (state, { payload: { items } }) => {
-                state.ajaxState.loading = 'fulfilled';
-                state.ajaxState.error = null;
-                booksAdapter.upsertMany(state, items);
-            })
-            .addCase(fetchDataOfBooks.rejected, (state, action) => {
-                console.log(action);
-                state.ajaxState.loading = 'error';  
-                state.ajaxState.error = action.error.message;  
-            })
+        .addCase(fetchDataOfBooks.pending, (state) => {
+            state.ajaxState.loading = 'pending';
+            state.ajaxState.error = null;
+        })
+        .addCase(fetchDataOfBooks.fulfilled, (state, { payload: { items } }) => {
+            state.ajaxState.loading = 'fulfilled';
+            state.ajaxState.error = null;
+            booksAdapter.upsertMany(state, items);
+        })
+        .addCase(fetchDataOfBooks.rejected, (state, action) => {
+            state.ajaxState.loading = 'error';  
+            state.ajaxState.error = action.error.message;  
+        })
     }
 })
 

@@ -1,13 +1,18 @@
 import React from "react";
 import { Form } from "react-bootstrap";
+import { useFormik } from 'formik';
+import { useSelector, useDispatch, batch } from 'react-redux';
+import { withTranslation } from "react-i18next";
+
 import SearchField from "./SearchField";
 import SelectFields from "./SelectFields";
+
 import { fetchDataOfBooks } from '../../slices/dataResultOfSearchingSlice.js';
-import { useSelector, useDispatch, batch } from 'react-redux';
-import { useFormik } from 'formik';
+
+
 import { actionsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
 import { actionsOfSearchingData } from "../../slices/dataOfSearchingSlice";
-import { withTranslation } from "react-i18next";
+
 
 const FormHeader = ({t}) => {
     const meta = useSelector((state) => state.dataOfSearching.meta);

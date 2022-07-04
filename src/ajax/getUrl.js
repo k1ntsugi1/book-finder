@@ -1,7 +1,6 @@
-export default (bookName, selectByCategory, selectBySort, currentStartIndex) => {
+export const getUrl =  (bookName, selectByCategory, selectBySort, currentStartIndex) => {
     const mainUrl = 'https://www.googleapis.com/books/v1/volumes?';
     const q = `q=${bookName}`;
-    //const allCategories = 'art + biography + computers + history + medical + poetry';
     const categories = selectByCategory === 'all' ? '' : `+subject:${selectByCategory}`;
     const orderBy = `&orderBy=${selectBySort}`;
     const startIndex = `&startIndex=${currentStartIndex}`;

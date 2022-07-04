@@ -6,9 +6,11 @@ import { useSelector } from "react-redux";
 const SearchField = ({t, formik: {bookName, handleChange}}) => {
     const searchField = useRef();
     const ajaxState = useSelector((state) => state.dataResultOfSearching.ajaxState);
+
     useEffect(() => {
         searchField.current.focus()
-      },[])
+      },[]);
+      
     return (
         <Form.Group className="mb-2">
                 <InputGroup>

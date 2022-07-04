@@ -10,7 +10,7 @@
         }
     },
     "main": {
-        "loadBtn": "Load ",
+        "loadBtn": "Load more ",
         "totalBooks": "Amount",
         "errorMessage": {
             "noResults": "There are no results",

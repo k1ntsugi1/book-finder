@@ -1,9 +1,12 @@
 import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { withTranslation } from "react-i18next";
+import { Button } from "react-bootstrap";
+
+
 import { selectorsDataResultOfSearching } from '../../slices/dataResultOfSearchingSlice.js';
 import { actionsOfCurrentBook } from '../../slices/dataCurrentBookSlice.js';
-import { useSelector, useDispatch } from 'react-redux';
-import { Button } from "react-bootstrap";
-import { withTranslation } from "react-i18next";
+
 
 const AboutBook = ({t}) => {
     const currentBookId = useSelector((state) => state.dataCurrentBook.currentBookId);
