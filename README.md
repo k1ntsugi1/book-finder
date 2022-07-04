@@ -16,6 +16,7 @@
  - react-spinner-loader
  - Formik
  - react-bootstrap
- - bootstrap 
+ - bootstrap
+ - i18next
  
-[**Heroku**](https://stunning-dry-tortugas-62203.herokuapp.com/)
+[**Versel**](https://book-finder-rose.vercel.app/)
