@@ -6,7 +6,7 @@ const dataOfSearchingSLice = createSlice({
     name: 'dataOfSearchingSLice',
     initialState: {
         totalBooks: null,
-        startIndex: 0,
+        oldStartIndex: 0,
         meta: {
             bookName: '',
             selectByCategory: 'all',
@@ -20,14 +20,14 @@ const dataOfSearchingSLice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchDataOfBooks.fulfilled, (state, { payload: { type, totalBooks , currentStartIndex } }) => {
+            .addCase(fetchDataOfBooks.fulfilled, (state, { payload: { type, currentTotalBooks , currentStartIndex } }) => {
                 const mappingType = {
                     'firstLoad': () => {
-                        state.totalBooks = totalBooks;
-                        state.startIndex = currentStartIndex;
+                        state.totalBooks = currentTotalBooks;
+                        state.oldStartIndex = currentStartIndex;
                     },
                     'someLoad': () => {
-                        state.startIndex = currentStartIndex;
+                        state.oldStartIndex = currentStartIndex;
                     }
                 };
                 mappingType[type]();

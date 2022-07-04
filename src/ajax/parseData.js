@@ -1,6 +1,8 @@
 
-const parseData = (data) => { 
-    const totalBooks = data.totalItems;
+const parseData = (data) => {
+    console.log(data,'data');
+    const currentTotalBooks = data.totalItems;
+    if (!Object.hasOwn(data, 'items')) throw new Error('No Results')
     const items = data.items.map((book) => {
         const volumeInfo = book.volumeInfo;
         const id = book.id
@@ -12,7 +14,7 @@ const parseData = (data) => {
 
         return {id, imgUrl, name, categories, authors, description }
     })
-    return {totalBooks, items}
+    return {currentTotalBooks, items}
 }
 
 export {parseData};

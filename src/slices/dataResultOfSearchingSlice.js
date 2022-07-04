@@ -12,13 +12,16 @@ export const fetchDataOfBooks = createAsyncThunk(
     async (_, thunkAPI) => {
         const state = thunkAPI.getState();
         const type = state.dataResultOfSearching.ajaxState.type;
-        const {startIndex, meta: {bookName, selectByCategory, selectBySort} } = state.dataOfSearching;
+        const {oldStartIndex, totalBooks, meta: {bookName, selectByCategory, selectBySort} } = state.dataOfSearching;
+        
+        //const freeeSpace = totalBooks - oldStartIndex;
+        //const step = freeeSpace >= 30 ? 30 : freeeSpace;
+        const currentStartIndex = type === 'firstLoad' ? oldStartIndex : oldStartIndex + 30;
 
-        const currentStartIndex = type === 'firstLoad' ? 0 : startIndex + 30;
         const url = getUrl(bookName, selectByCategory, selectBySort, currentStartIndex)
         const response = await axios.get(url);
-        const { totalBooks, items } = parseData(response.data);
-        return { items, type, totalBooks , currentStartIndex }
+        const { currentTotalBooks, items } = parseData(response.data);
+        return { items, type, currentTotalBooks , currentStartIndex }
     }
 )
 
@@ -46,7 +49,7 @@ const dataResultOfSearchingSlice = createSlice({
             .addCase(fetchDataOfBooks.rejected, (state, action) => {
                 console.log(action);
                 state.ajaxState.loading = 'error';  
-                state.ajaxState.error = action.error.name;  
+                state.ajaxState.error = action.error.message;  
             })
     }
 })

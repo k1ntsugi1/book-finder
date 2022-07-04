@@ -7,8 +7,9 @@ import { useSelector, useDispatch, batch } from 'react-redux';
 import { useFormik } from 'formik';
 import { actionsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
 import { actionsOfSearchingData } from "../../slices/dataOfSearchingSlice";
+import { withTranslation } from "react-i18next";
 
-const FormHeader = () => {
+const FormHeader = ({t}) => {
     const meta = useSelector((state) => state.dataOfSearching.meta);
     const dispatch = useDispatch();
 
@@ -16,7 +17,7 @@ const FormHeader = () => {
         initialValues: { bookName: meta.bookName, selectByCategory: meta.selectByCategory, selectBySort: meta.selectBySort },
         validateOnChange: false,
         validateOnBlur: false,
-        onSubmit: (values, actions) => {
+        onSubmit: (values) => {
             batch(() => {
                 dispatch(actionsDataResultOfSearching.setType({ type: 'firstLoad' }));
                 dispatch(actionsOfSearchingData.setMetaOfSearching(
@@ -36,12 +37,12 @@ const FormHeader = () => {
         }
     })
     return (
-        <Form noValidate className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={formik.handleSubmit}>
-            <h3 className='text-center'>Начни поиск</h3>
+        <Form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={formik.handleSubmit}>
+            <h3 className='text-center'>{t("header.title")}</h3>
             <SearchField formik={formik} />
             <SelectFields formik={formik} />
         </Form>
     )
 }
 
-export default FormHeader; 
+export default withTranslation()(FormHeader);

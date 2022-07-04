@@ -1,15 +1,19 @@
 import React from "react";
+import { withTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-const ErrorFetch = () => {
+const ErrorFetch = ({ t, children }) => {
     const error = useSelector((state) => state.dataResultOfSearching.ajaxState.error)
 
     return (
-        <div className="p-5 align-self-center border border-danger">
-            {error === "AxiosError" && <h3>Please check Network</h3>}
-            {error === "TypeError" && <h3>Please check bookName</h3>}
-        </div>
+        <>
+            <div className="px-5 mb-3 align-self-center border border-info">
+                {error === "Network Error" && <h3>{t("main.errorMessage.network")}</h3>}
+                {error === "No Results" && <h3>{t("main.errorMessage.noResults")}</h3>}
+            </div>
+            {children}
+        </>
     )
 }
 
-export default ErrorFetch;
+export default withTranslation()(ErrorFetch);

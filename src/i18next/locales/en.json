@@ -1,0 +1,26 @@
+{
+    "header": {
+        "title": "Search for books",
+        "searchField": {
+            "placeholder":"enter book" 
+        },
+        "selectsField": {
+            "categories": "Categories",
+            "sotringBy": "Sotring By"
+        }
+    },
+    "main": {
+        "loadBtn": "Load ",
+        "totalBooks": "Amount",
+        "errorMessage": {
+            "noResults": "There are no results",
+            "network": "Network error"
+        },
+        "aboutBook": {
+            "backBtn": "← Go back",
+            "categories": "Categories: ",
+            "authors": "Authors",
+            "defaultDescription": "No description"
+        }
+    }
+}
