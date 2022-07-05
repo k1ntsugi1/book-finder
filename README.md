@@ -19,4 +19,4 @@
  - bootstrap
  - i18next
  
-[**Versel**](https://book-finder-rose.vercel.app/)
+[**Versel**](https://book-finder-rose.vercel.app/) - прод
