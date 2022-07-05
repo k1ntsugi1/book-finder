@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 const SearchField = ({ t, formik: { bookName, handleChange, errors } }) => {
   const searchField = useRef();
   const ajaxState = useSelector((state) => state.dataResultOfSearching.ajaxState);
-  console.log(errors);
   useEffect(() => {
     searchField.current.focus()
   }, []);

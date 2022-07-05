@@ -22,7 +22,7 @@
         "aboutBook": {
             "backBtn": "← Go back",
             "categories": "Categories: ",
-            "authors": "Authors",
+            "authors": "Authors: ",
             "defaultDescription": "No description"
         }
     }

@@ -26,7 +26,6 @@ const FormHeader = ({t}) => {
                     message: t("header.searchField.errors.strangeName"),
                     test: (value, testContext) => {
                         const bookName = testContext.parent.bookName ?? null
-                        console.log(bookName, testContext.parent, bookName === null)
                         return !(bookName === null || bookName.trim() === '');
                     }
                     })
