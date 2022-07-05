@@ -2,7 +2,10 @@
     "header": {
         "title": "Search for books",
         "searchField": {
-            "placeholder":"enter book" 
+            "placeholder":"enter book",
+            "errors": {
+                "strangeName": "Maybe write something? :)"
+            }
         },
         "selectsField": {
             "categories": "Categories",

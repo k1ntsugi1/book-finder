@@ -13,13 +13,18 @@ import { selectorsDataResultOfSearching } from "../../slices/dataResultOfSearchi
 const BooksList = ({t}) => {
     const books = useSelector(selectorsDataResultOfSearching.selectAll);
     const ajaxState = useSelector((state) => state.dataResultOfSearching.ajaxState);
-    const totalBooks = useSelector((state) => state.dataOfSearching.totalBooks);
+    const {totalBooks, oldStartIndex} = useSelector((state) => state.dataOfSearching);
     
     return (
         <>
-            {totalBooks && <h3 className='fw-bold'>{t('main.totalBooks')}: {totalBooks}</h3>}
+            {
+                totalBooks
+            &&  <h3 className='fw-bold'>
+                    {t('main.totalBooks')}: {totalBooks}
+                </h3>
+            }
 
-            <div className='row justify-content-around' style={{minHeight: '200px', minWidth: '200px'}}>
+            <div className='row justify-content-around'>
                 {totalBooks
                     && books.map((book) => {
                         return (
@@ -28,9 +33,20 @@ const BooksList = ({t}) => {
                     })
                 }
             </div>
-            {ajaxState.error === 'No Results' && ajaxState.type === 'someLoad' && <ErrorFetch error={ajaxState.error}/>}
-            {ajaxState.error === 'Network Error' && ajaxState.type === 'someLoad' && <ErrorFetch><LoadNewBooks/></ErrorFetch>}
-            {ajaxState.error === null && totalBooks  && <LoadNewBooks/>}
+            
+            {
+                ajaxState.error === 'Network Error'
+             && ajaxState.type === 'someLoad' 
+             && <ErrorFetch>
+                    <LoadNewBooks/>
+                </ErrorFetch>
+            }
+            {
+                ajaxState.error === null
+             && totalBooks
+             && (totalBooks - oldStartIndex > 30)
+             && <LoadNewBooks/>
+            }
         </>
     )
 }

@@ -1,12 +1,11 @@
 
 const parseData = (data) => {
     const currentTotalBooks = data.totalItems;
-    if (!Object.hasOwn(data, 'items')) throw new Error('No Results')
+    if (!Object.hasOwn(data, 'items')) throw new Error('No Results');
     
     const items = data.items.map((book) => {
         const volumeInfo = book.volumeInfo;
         const id = book.id
-        // Object.hasOwn(volumeInfo, 'imageLinks')
         const imgUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.smallThumbnail : null;
         const name = volumeInfo.title ?? null;
         const categories = volumeInfo.categories ?? null;

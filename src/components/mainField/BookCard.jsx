@@ -18,7 +18,7 @@ const BookCard = ({ book }) => {
     const [firstCategory] = book.categories !== null ? parseCategories(book.categories.toString()) : [null];
     
     return (
-        <Card className="p-0 col-5 col-md-3 col-xs-12 m-3 border-info bg-light bookCard" onClick={handlerNewCurrentBook(book.id)}>
+        <Card className="p-0 col-5 col-md-3 col-xs-12 m-3 border-info bg-light bookCard" onClick={handlerNewCurrentBook(book.id)} style={{minWidth: '200px'}}>
             {
                 book.imgUrl &&
                 <Card.Img variant="top" src={book.imgUrl} className="mx-auto mt-3 w-50 shadow-lg" alt="imgBook" />

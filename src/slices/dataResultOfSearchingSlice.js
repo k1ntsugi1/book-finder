@@ -14,7 +14,7 @@ export const fetchDataOfBooks = createAsyncThunk(
         const state = thunkAPI.getState();
         const { type } = state.dataResultOfSearching.ajaxState;
         const { oldStartIndex, meta: {bookName, selectByCategory, selectBySort} } = state.dataOfSearching;
-
+        if (bookName === '') throw new Error('No Results')
         const currentStartIndex = type === 'firstLoad' ? 0 : oldStartIndex + 30;
 
         const url = getUrl(bookName, selectByCategory, selectBySort, currentStartIndex)
